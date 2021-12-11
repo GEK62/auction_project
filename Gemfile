@@ -23,6 +23,10 @@ gem 'jbuilder', '~> 2.7'
 # gem 'bcrypt', '~> 3.1.7'
 # Use Devise for authentication
 gem 'devise', '~> 4.2'
+# Use Bootstrap for layout
+gem 'bootstrap', '~> 5.1.3'
+# Use jQuery for JavaScript
+gem 'jquery-rails'
 
 # Use Active Storage variant
 # gem 'image_processing', '~> 1.2'
