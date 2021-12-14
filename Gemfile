@@ -27,6 +27,8 @@ gem 'devise', '~> 4.2'
 gem 'bootstrap', '~> 5.1.3'
 # Use jQuery for JavaScript
 gem 'jquery-rails'
+# Use rubocop-rails for code style
+gem 'rubocop-rails', require: false
 
 # Use Active Storage variant
 # gem 'image_processing', '~> 1.2'
