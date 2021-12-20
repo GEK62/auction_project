@@ -14,7 +14,6 @@ AllCops:
     - 'Gemfile'
     - 'Gemfile.lock'
 
-  # This is a list of cop names that are allowed to fail without exiting the
 Style/Documentation:
   Enabled: false
 Style/FrozenStringLiteralComment:
