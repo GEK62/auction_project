@@ -1,0 +1,47 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Name:</strong>
+  <%= @lot.name %>
+</p>
+
+<p>
+  <strong>Description:</strong>
+  <%= @lot.description %>
+</p>
+
+<p>
+  <strong>End Date:</strong>
+  <%= @lot.end_date.strftime("%B %d, %Y") %>
+</p>
+
+<p>
+  <strong>Start price:</strong>
+  <%= @lot.start_price %>
+</p>
+
+<p>
+  <strong>Fast buy price:</strong>
+  <%= @lot.fast_buy_price %>
+</p>
+
+<p>
+  <strong>Category:</strong>
+  <%= @category_groups.find_by_id(@lot.category_group_id).title %>
+</p>
+
+<p>
+  <strong>Images:</strong>
+  <% if @lot.images.attached? %>
+    <% @lot.images.each do |image| %>
+      <%= image_tag image, class: 'lot-image', height: '200', width: '200' %>
+    <% end %>
+  <% else %>
+    <h4>No images</h4>
+  <% end %>
+</p>
+
+
+
+<%= link_to 'Edit', edit_lot_path(@lot) %> |
+<%= link_to 'Back', lots_path %>
