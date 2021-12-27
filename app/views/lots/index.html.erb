@@ -1,3 +1,4 @@
+<% if user_signed_in? %>
 <h1 class="text-center">Welcome to Auction</h1>
 
 <p id="notice"><%= notice %></p>
@@ -13,13 +14,12 @@
     <th>End date</th>
     <th>Images</th>
     <th>Lot owner</th>
-      <th colspan="3"></th>
     </tr>
   </thead>
 
   <tbody>
     <% @lots.each do |lot| %>
-        <td><%= lot.name %></td>
+        <td><%= link_to lot.name, lot %></td>
         <td><%= lot.description %></td>
         <td><%= lot.category_group.categories.first.title %></td>
         <td><%= lot.start_price %>$</td>
@@ -27,10 +27,6 @@
         <td><%= lot.end_date.strftime("%d.%m.%Y") %></td>
         <td><%= image_tag lot.images.first, width: "200px", height: "200px" %></td>
         <td><%= lot.user_id %></td>
-
-        <td><%= link_to 'Show', lot %></td>
-        <td><%= link_to 'Edit', edit_lot_path(lot) %></td>
-        <td><%= link_to 'Destroy', lot, method: :delete, data: { confirm: 'Are you sure?' } %></td>
       </tr>
     <% end %>
   </tbody>
@@ -38,4 +34,9 @@
 
 <br>
 
-<%= link_to 'New Lot', new_lot_path %>
+<%= link_to 'New Lot', new_lot_path, class:"btn btn-success" %>
+<% else %>
+<h1 class="text-center">Welcome to Auction</h1>
+<br/>
+<h2 class="text-center">Please, <%= link_to 'sign in', new_user_session_path, class:"btn btn-secondary"%> or <%= link_to 'sign up', new_user_registration_path, class:"btn btn-warning" %> to continue</h2>
+<% end %>

@@ -23,12 +23,12 @@
 
   <div class="field form-group">
     <%= f.label :start_price %>
-    <%= f.number_field :start_price, required: true, min: 1, max: 100000, class:"form-control" %>
+    <%= f.number_field :start_price, required: true, min: 1, max: 9999999999, class:"form-control" %>
   </div>
 
   <div class="field form-group">
     <%= f.label :fast_buy_price %>
-    <%= f.number_field :fast_buy_price, required: true, min: 5, max: 100000, class:"form-control" %>
+    <%= f.number_field :fast_buy_price, required: true, min: 5, max: 9999999999, class:"form-control" %>
   </div>
 
   <div class="field form-group">
@@ -38,7 +38,7 @@
 <br/>
   <div class="dropdown">
     <%= f.label :category, class:"label-dropdown" %><br/>
-    <%= f.collection_select :category_group_id, @categories, :id, :title, required: true, class:"dropdown" %>
+    <%= f.collection_select :category_group_id, @category_groups, :id, :title, required: true, class:"dropdown" %>
   </div>
 <br/>
   <div class="mb-3">

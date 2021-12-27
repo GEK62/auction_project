@@ -15,6 +15,7 @@ class LotsController < ApplicationController
 
   def create
     @categories = Category.all
+    @category_groups = CategoryGroup.all
     @lot = current_user.lots.build(lot_params)
     if @lot.save
       redirect_to lots_path

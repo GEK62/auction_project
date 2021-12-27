@@ -61,7 +61,7 @@ ActiveRecord::Schema.define(version: 2021_12_25_155926) do
     t.string "name"
     t.text "description"
     t.decimal "start_price"
-    t.string "fast_buy_price"
+    t.decimal "fast_buy_price"
     t.datetime "end_date"
     t.bigint "user_id", null: false
     t.bigint "category_group_id", null: false
