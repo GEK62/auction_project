@@ -2,5 +2,6 @@
 
 <%= render 'form', lot: @lot %>
 
-<%= link_to 'Show', @lot %> |
-<%= link_to 'Back', lots_path %>
+<%= link_to 'Show', @lot, class: 'btn btn-secondary' %>
+<%= link_to 'Delete', @lot, method: :delete, data: { confirm: 'Are you sure?' }, class: 'btn btn-danger' %>
+<%= link_to 'Back', lots_path, class: 'btn btn-secondary' %>

@@ -27,6 +27,8 @@ gem 'devise', '~> 4.2'
 gem 'jquery-rails'
 # Use rubocop-rails for code style
 gem 'rubocop-rails', '~> 2.12', '>= 2.12.4', require: false
+# Use file-validator gem for validating files
+gem 'file_validators', '~> 2.0', '>= 2.0.2'
 
 # Use Active Storage variant
 gem 'image_processing', '~> 1.2'
