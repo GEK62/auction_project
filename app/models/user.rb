@@ -5,11 +5,12 @@ class User < ApplicationRecord
          :recoverable, :rememberable, :validatable
   has_one_attached :avatar
   has_many :lots
-  after_commit :add_default_avatar, on: %i[create update]
 
   attr_writer :login
   
   validate :validate_username
+  validates :avatar, file_size: { less_than_or_equal_to: 5.megabytes },
+  file_content_type: { allow: ['image/jpeg', 'image/png', 'image/gif'] }
 
   def login
     @login || self.username || self.email
@@ -29,25 +30,4 @@ class User < ApplicationRecord
       errors.add(:username, :invalid)
     end
   end
-
-  def avatar_thumbnail
-    if avatar.attached?
-      avatar.variant(resize: '200x200!').processed
-    else
-      '/images/default_profile.jpg'
-    end
-  end
-
-  def add_default_avatar
-    return if avatar.attached?
-
-    avatar.attach(
-      io: File.open(Rails.root.join(
-                      'app', 'assets', 'images', 'default_profile.jpg'
-                    )),
-      filename: 'default_profile.jpg',
-      content_type: 'image/jpg'
-    )
-  end
-  private :add_default_avatar
 end
