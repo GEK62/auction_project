@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2021_12_24_000238) do
+ActiveRecord::Schema.define(version: 2021_12_25_155926) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -58,12 +58,17 @@ ActiveRecord::Schema.define(version: 2021_12_24_000238) do
   end
 
   create_table "lots", force: :cascade do |t|
-    t.string "title"
-    t.decimal "start_price"
-    t.decimal "fast_buy_price"
+    t.string "name"
     t.text "description"
+    t.decimal "start_price"
+    t.string "fast_buy_price"
+    t.datetime "end_date"
+    t.bigint "user_id", null: false
+    t.bigint "category_group_id", null: false
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
+    t.index ["category_group_id"], name: "index_lots_on_category_group_id"
+    t.index ["user_id"], name: "index_lots_on_user_id"
   end
 
   create_table "users", force: :cascade do |t|
@@ -81,4 +86,6 @@ ActiveRecord::Schema.define(version: 2021_12_24_000238) do
   add_foreign_key "active_storage_attachments", "active_storage_blobs", column: "blob_id"
   add_foreign_key "active_storage_variant_records", "active_storage_blobs", column: "blob_id"
   add_foreign_key "categories", "category_groups"
+  add_foreign_key "lots", "category_groups"
+  add_foreign_key "lots", "users"
 end
