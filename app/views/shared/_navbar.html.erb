@@ -1,3 +1,5 @@
+<%= provide :navbar do %>
+<header>
 <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
   <div class="container-fluid">
     <a class="navbar-brand" href="/">
@@ -6,10 +8,10 @@
     <div class="collapse navbar-collapse" id="navbarSupportedContent">
       <ul class="navbar-nav me-auto mb-2 mb-lg-0">
         <li class="nav-link">
-          <%= link_to "About Us", home_about_path, class:"nav-link" %>
+          <%= nav_tab "About Us", home_about_path, class:"nav-link", current_page: current_page %>
         </li>
         <li class="nav-link">
-          <%= link_to "Contacts" , home_contact_path, class:"nav-link" %> 
+          <%= nav_tab "Contacts" , home_contact_path, class:"nav-link", current_page: current_page %> 
         </li>
       </ul>
       <ul class="nav justify-content-end">
@@ -46,3 +48,5 @@
     </div>
   </div>
 </nav>
+</header>
+<% end %>

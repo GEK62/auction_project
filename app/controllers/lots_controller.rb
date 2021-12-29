@@ -1,7 +1,6 @@
 class LotsController < ApplicationController
   before_action :set_lot, only: %i[show edit update destroy]
   before_action :authenticate_user!, except: %i[index show]
-  before_action :correct_user, only: %i[edit update destroy]
 
   def index
     @lots = Lot.all
@@ -16,11 +15,12 @@ class LotsController < ApplicationController
   def create
     @categories = Category.all
     @category_groups = CategoryGroup.all
+    authorize @lot
     @lot = current_user.lots.build(lot_params)
     if @lot.save
-      redirect_to lots_path
+      redirect_to @lot, notice: "Lot was successfully created."
     else
-      render :new
+      render :new, status: :unprocessable_entity
     end
   end
 
@@ -36,9 +36,11 @@ class LotsController < ApplicationController
   end
 
   def update
+    @lot = Lot.find(params[:id])
+    authorize @lot
     @categories = Category.all
     if @lot.update(lot_params)
-      redirect_to lots_path
+      redirect_to @lot, notice: "Lot was successfully updated."
     else
       render :edit
     end
@@ -47,11 +49,6 @@ class LotsController < ApplicationController
   def destroy
     @lot.destroy
     redirect_to lots_path
-  end
-
-  def correct_user
-    @lot = current_user.lots.find_by(id: params[:id])
-    redirect_to lots_path, notice: 'Not authorized to edit this lot' if @lot.nil?
   end
 
   def set_lot

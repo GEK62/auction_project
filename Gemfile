@@ -25,10 +25,12 @@ gem 'jbuilder', '~> 2.7'
 gem 'devise', '~> 4.2'
 # Use jQuery for JavaScript
 gem 'jquery-rails'
-# Use rubocop-rails for code style
-gem 'rubocop-rails', '~> 2.12', '>= 2.12.4', require: false
 # Use file-validator gem for validating files
 gem 'file_validators', '~> 2.0', '>= 2.0.2'
+# Use pundit for authorization
+gem 'pundit', '~> 2.1', '>= 2.1.1'
+# Use kaminari gem for pagination
+gem 'kaminari', '~> 1.2', '>= 1.2.1'
 
 # Use Active Storage variant
 gem 'image_processing', '~> 1.2'
@@ -52,6 +54,10 @@ group :development do
   gem 'rack-mini-profiler', '~> 2.0'
   # Spring speeds up development by keeping your application running in the background. Read more: https://github.com/rails/spring
   gem 'spring'
+  # Use rubocop for code-style
+  gem 'rubocop', '~> 1.24'
+  gem 'rubocop-rails', '~> 2.12', '>= 2.12.4', require: false
+  gem 'rubocop-performance', '~> 1.13', require: false
 end
 
 group :test do

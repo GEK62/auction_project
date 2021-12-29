@@ -1,6 +1,9 @@
-require: rubocop-rails
+require:
+ - rubocop-rails
+ - rubocop-performance
 AllCops:
   NewCops: enable
+  TargetRubyVersion: 3.0.2
   Exclude:
     - 'db/**/*'
     - 'config/**/*'
