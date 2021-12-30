@@ -31,6 +31,8 @@ gem 'file_validators', '~> 2.0', '>= 2.0.2'
 gem 'pundit', '~> 2.1', '>= 2.1.1'
 # Use kaminari gem for pagination
 gem 'kaminari', '~> 1.2', '>= 1.2.1'
+# Use rails-i18n gem for internationalization
+gem 'rails-i18n', '~> 6.0'
 
 # Use Active Storage variant
 gem 'image_processing', '~> 1.2'

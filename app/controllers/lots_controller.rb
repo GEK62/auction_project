@@ -18,7 +18,7 @@ class LotsController < ApplicationController
     authorize @lot
     @lot = current_user.lots.build(lot_params)
     if @lot.save
-      redirect_to @lot, notice: "Lot was successfully created."
+      redirect_to @lot, notice: 'Lot was successfully created.'
     else
       render :new, status: :unprocessable_entity
     end
@@ -40,7 +40,7 @@ class LotsController < ApplicationController
     authorize @lot
     @categories = Category.all
     if @lot.update(lot_params)
-      redirect_to @lot, notice: "Lot was successfully updated."
+      redirect_to @lot, notice: 'Lot was successfully updated.'
     else
       render :edit
     end
