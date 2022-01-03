@@ -23,7 +23,7 @@
     <% @lots.each do |lot| %>
         <td><%= link_to lot.name, lot %></td>
         <td><%= lot.description %></td>
-        <td><%= lot.category_group.categories.first.title %></td>
+        <td><%= lot.category_id %></td>
         <td><%= lot.start_price %>$</td>
         <td><%= lot.fast_buy_price %>$</td>
         <td><%= lot.end_date.strftime("%d.%m.%Y") %></td>

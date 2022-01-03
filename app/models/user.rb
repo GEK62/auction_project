@@ -15,7 +15,8 @@ class User < ApplicationRecord
 
   attr_writer :login
 
-  validate :validate_username
+  validates :email, format: { with: /\A([^@\s]+)@((?:[-a-z0-9]+\.)+[a-z]{2,})\z/i, on: :create }
+  validate  :validate_username
   validates :avatar, file_size: { less_than_or_equal_to: 5.megabytes },
                      file_content_type: { allow: ['image/jpeg', 'image/png', 'image/gif'] }
 

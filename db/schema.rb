@@ -64,10 +64,10 @@ ActiveRecord::Schema.define(version: 2021_12_28_151807) do
     t.decimal "fast_buy_price"
     t.datetime "end_date"
     t.bigint "user_id", null: false
-    t.bigint "category_group_id", null: false
+    t.bigint "category_id", null: false
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
-    t.index ["category_group_id"], name: "index_lots_on_category_group_id"
+    t.index ["category_id"], name: "index_lots_on_category_id"
     t.index ["user_id"], name: "index_lots_on_user_id"
   end
 
@@ -89,6 +89,6 @@ ActiveRecord::Schema.define(version: 2021_12_28_151807) do
   add_foreign_key "active_storage_attachments", "active_storage_blobs", column: "blob_id"
   add_foreign_key "active_storage_variant_records", "active_storage_blobs", column: "blob_id"
   add_foreign_key "categories", "category_groups"
-  add_foreign_key "lots", "category_groups"
+  add_foreign_key "lots", "categories"
   add_foreign_key "lots", "users"
 end

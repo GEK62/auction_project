@@ -15,8 +15,8 @@ class LotsController < ApplicationController
   def create
     @categories = Category.all
     @category_groups = CategoryGroup.all
-    authorize @lot
     @lot = current_user.lots.build(lot_params)
+    authorize @lot
     if @lot.save
       redirect_to @lot, notice: 'Lot was successfully created.'
     else
@@ -31,6 +31,8 @@ class LotsController < ApplicationController
   end
 
   def edit
+    @lot = Lot.find(params[:id])
+    authorize @lot
     @categories = Category.all
     @category_groups = CategoryGroup.all
   end
@@ -47,6 +49,7 @@ class LotsController < ApplicationController
   end
 
   def destroy
+    authorize @lot
     @lot.destroy
     redirect_to lots_path
   end
@@ -57,7 +60,7 @@ class LotsController < ApplicationController
 
   def lot_params
     params.require(:lot).permit(:name, :description, :start_price, :fast_buy_price, :end_date, :user_id,
-                                :category_group_id, images: [])
+                                :category_id, images: [])
   end
   private :lot_params, :set_lot
 end

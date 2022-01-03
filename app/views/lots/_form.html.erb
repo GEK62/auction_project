@@ -10,7 +10,7 @@
       </ul>
     </div>
   <% end %>
-<br/>
+
   <div class="field form-group">
     <%= f.label :name %>
     <%= f.text_field :name, required: true, minlength: 3, maxlength: 50, class:"form-control" %>
@@ -33,12 +33,12 @@
 
   <div class="field form-group">
     <%= f.label :end_date %>
-    <%= f.date_field :end_date, required: true, class:"form-control" %> 
+    <%= f.date_field :end_date, required: true, class:"form-control" %>
   </div>
 <br/>
   <div class="dropdown">
     <%= f.label :category, class:"label-dropdown" %><br/>
-    <%= f.collection_select :category_group_id, @category_groups, :id, :title, required: true, class:"dropdown" %>
+    <%= f.collection_select :category_id, @categories, :id, :title, required: true, class:"dropdown" %>
   </div>
 <br/>
   <div class="mb-3">

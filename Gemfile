@@ -33,6 +33,8 @@ gem 'pundit', '~> 2.1', '>= 2.1.1'
 gem 'kaminari', '~> 1.2', '>= 1.2.1'
 # Use rails-i18n gem for internationalization
 gem 'rails-i18n', '~> 6.0'
+# Use draper gem for view decorators
+gem 'draper', '~> 4.0.2'
 
 # Use Active Storage variant
 gem 'image_processing', '~> 1.2'
@@ -60,6 +62,8 @@ group :development do
   gem 'rubocop', '~> 1.24'
   gem 'rubocop-rails', '~> 2.12', '>= 2.12.4', require: false
   gem 'rubocop-performance', '~> 1.13', require: false
+  # Use letter_opener gem for email delivery
+  gem 'letter_opener', '~> 1.7'
 end
 
 group :test do
