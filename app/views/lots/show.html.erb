@@ -1,3 +1,5 @@
+<% provide :page_title, 'Lot description' %>
+<% currently_at 'Lot description' %>
 <p id="notice"><%= notice %></p>
 
 <p>
@@ -17,17 +19,17 @@
 
 <p>
   <strong>Start price:</strong>
-  <%= @lot.start_price %>
+  <%= @lot.start_price %>$
 </p>
 
 <p>
   <strong>Fast buy price:</strong>
-  <%= @lot.fast_buy_price %>
+  <%= @lot.fast_buy_price %>$
 </p>
 
 <p>
   <strong>Category:</strong>
-  <%= @category_groups.find_by_id(@lot.category_group_id).title %>
+  <%= @categories.find_by_id(@lot.category_id).title %>
 </p>
 
 <p>
