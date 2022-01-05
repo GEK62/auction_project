@@ -18,9 +18,9 @@ gem 'turbolinks', '~> 5'
 # Build JSON APIs with ease. Read more: https://github.com/rails/jbuilder
 gem 'jbuilder', '~> 2.7'
 # Use Redis adapter to run Action Cable in production
-# gem 'redis', '~> 4.0'
+gem 'redis', '~> 4.0'
 # Use Active Model has_secure_password
-# gem 'bcrypt', '~> 3.1.7'
+gem 'bcrypt', '~> 3.1.7'
 # Use Devise for authentication
 gem 'devise', '~> 4.2'
 # Use jQuery for JavaScript
@@ -35,6 +35,16 @@ gem 'kaminari', '~> 1.2', '>= 1.2.1'
 gem 'rails-i18n', '~> 6.0'
 # Use draper gem for view decorators
 gem 'draper', '~> 4.0.2'
+# Use omniauth gem for authentication
+gem 'omniauth', '~> 2.0', '>= 2.0.4'
+# Use omniauth-google-oauth2 gem for authentication with Google
+gem 'omniauth-google-oauth2', '~> 1.0'
+# Use omniauth-rails_csrf_protection gem for protect authentication
+gem 'omniauth-rails_csrf_protection', '~> 1.0'
+# Use omniauth-github gem for authentication with GitHub
+gem 'omniauth-github', github: 'omniauth/omniauth-github', branch: 'master'
+# Use ActiveRecord Sessions
+gem 'activerecord-session_store', '~> 2.0'
 
 # Use Active Storage variant
 gem 'image_processing', '~> 1.2'
@@ -64,6 +74,8 @@ group :development do
   gem 'rubocop-performance', '~> 1.13', require: false
   # Use letter_opener gem for email delivery
   gem 'letter_opener', '~> 1.7'
+  # Use dotenv-rails gem for .env file
+  gem 'dotenv-rails', '~> 2.7', '>= 2.7.6'
 end
 
 group :test do
