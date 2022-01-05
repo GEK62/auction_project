@@ -1,6 +1,4 @@
 class User < ApplicationRecord
-  # Include default devise modules. Others available are:
-  # :confirmable, :lockable, :timeoutable, :trackable and :omniauthable
   enum role: { enduser: 0, editor: 1, admin: 2, superadmin: 3 }
   after_initialize :set_default_role, if: :new_record?
 
@@ -8,8 +6,10 @@ class User < ApplicationRecord
     self.role ||= :enduser
   end
 
-  devise :database_authenticatable, :registerable,
-         :recoverable, :rememberable, :validatable
+  devise  :database_authenticatable, :registerable,
+        :recoverable, :rememberable, :trackable, :validatable,
+        :confirmable, :lockable, :timeoutable,
+        :omniauthable, omniauth_providers: [:github, :google_oauth2]
   has_one_attached :avatar
   has_many :lots, dependent: :destroy
 
@@ -19,6 +19,14 @@ class User < ApplicationRecord
   validate  :validate_username
   validates :avatar, file_size: { less_than_or_equal_to: 5.megabytes },
                      file_content_type: { allow: ['image/jpeg', 'image/png', 'image/gif'] }
+
+  def self.create_from_provider_data(provider_data)
+    where(provider: provider_data.provider, uid: provider_data.uid).first_or_create do | user |
+      user.email = provider_data.info.email
+      user.password = Devise.friendly_token[0, 20]
+      user.skip_confirmation!
+    end
+  end
 
   def login
     @login || username || email

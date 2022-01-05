@@ -44,6 +44,7 @@
 </p>
 
 
-
+<% if policy(@lot).edit? %>
 <%= link_to 'Edit', edit_lot_path(@lot), class: 'btn btn-warning' %>
+<% end %>
 <%= link_to 'Back', lots_path, class: 'btn btn-dark' %>

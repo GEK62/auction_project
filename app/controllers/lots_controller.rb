@@ -28,6 +28,7 @@ class LotsController < ApplicationController
     @lot = Lot.find(params[:id])
     @categories = Category.all
     @category_groups = CategoryGroup.all
+    @bid = Bid.find_by(lot_id: @lot.id)
   end
 
   def edit
