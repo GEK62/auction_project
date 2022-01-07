@@ -51,7 +51,8 @@
   <div class="field form-group">
     <% f.label :current_password %> <i>(we need your current password to confirm your changes)</i>
     <%= f.password_field :current_password, autocomplete: "current-password", class:"form-control", placeholder:"Current Password" %>
-  </div>
+  </div><br/>
+  <%= link_to t("forget_your_password?"), new_password_path(resource_name), class:"btn btn-info" %><br/>
 <br/>
   <div class="actions">
     <%= f.submit "Update", class:"btn btn-warning"%>
@@ -73,4 +74,4 @@
 </div>
 
 <br/>
-<%= link_to "Back", :back %>
+<%= link_to "Back", :back, class:"btn btn-info" %>

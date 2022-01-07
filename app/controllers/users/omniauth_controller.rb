@@ -4,9 +4,10 @@ class Users::OmniauthController < ApplicationController
   def github
     @user = User.create_from_provider_data(request.env['omniauth.auth'])
     if @user.persisted?
+      flash[:notice] = I18n.t "devise.omniauth_callbacks.success", kind: 'GitHub'
       sign_in_and_redirect @user
     else
-      flash[:error] = 'There was a problem signing you in through GitHub. Please register or try signing in later.'
+      flash[:notice] = I18n.t "devise.omniauth_callbacks.failure"
       redirect_to new_user_registration_url
     end
   end
@@ -15,15 +16,24 @@ class Users::OmniauthController < ApplicationController
   def google_oauth2
     @user = User.create_from_provider_data(request.env['omniauth.auth'])
     if @user.persisted?
+      flash[:notice] = I18n.t "devise.omniauth_callbacks.success", kind: 'Google'
       sign_in_and_redirect @user
     else
-      flash[:error] = 'There was a problem signing you in through Google. Please register or try signing in later.'
+      flash[:notice] = I18n.t "devise.omniauth_callbacks.failure"
+      redirect_to new_user_registration_url
+    end
+  end
+  # linkedin callback
+
+  def linkedin
+    @user = User.create_from_provider_data(request.env['omniauth.auth'])
+    if @user.persisted?
+      flash[:notice] = I18n.t "devise.omniauth_callbacks.success", kind: 'Linkedin'
+      sign_in_and_redirect @user
+    else
+      flash[:notice] = I18n.t "devise.omniauth_callbacks.failure"
       redirect_to new_user_registration_url
     end
   end
 
-  def failure
-    flash[:error] = 'There was a problem signing you in. Please register or try signing in later.'
-    redirect_to new_user_registration_url
-  end
 end
