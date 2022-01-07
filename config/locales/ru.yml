@@ -1,5 +1,8 @@
 ru:
   en: 'Английский'
   ru: 'Русский'
+  navbar:
+    brand: 'Аукцион'
   home:
     about: 'О проекте'
+    contact: 'Контакты'

@@ -43,8 +43,14 @@ gem 'omniauth-google-oauth2', '~> 1.0'
 gem 'omniauth-rails_csrf_protection', '~> 1.0'
 # Use omniauth-github gem for authentication with GitHub
 gem 'omniauth-github', github: 'omniauth/omniauth-github', branch: 'master'
+# Use omniauth-linkedin gem for authentication with LinkedIn
+gem 'omniauth-linkedin-oauth2', '~> 1.0'
 # Use ActiveRecord Sessions
 gem 'activerecord-session_store', '~> 2.0'
+# Use bullet gem for performance
+gem 'bullet', '~> 6.1', '>= 6.1.4'
+# Use state-machines gem for state machine
+gem 'state_machines', '~> 0.5.0'
 
 # Use Active Storage variant
 gem 'image_processing', '~> 1.2'
@@ -73,7 +79,7 @@ group :development do
   gem 'rubocop-rails', '~> 2.12', '>= 2.12.4', require: false
   gem 'rubocop-performance', '~> 1.13', require: false
   # Use letter_opener gem for email delivery
-  gem 'letter_opener', '~> 1.7'
+  gem "letter_opener", group: :development
   # Use dotenv-rails gem for .env file
   gem 'dotenv-rails', '~> 2.7', '>= 2.7.6'
 end

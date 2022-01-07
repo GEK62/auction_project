@@ -3,7 +3,7 @@
 <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
   <div class="container-fluid">
     <a class="navbar-brand" href="/">
-      Auction
+      <%= t('navbar.brand') %>
     </a>
     <div class="collapse navbar-collapse" id="navbarSupportedContent">
       <ul class="navbar-nav me-auto mb-2 mb-lg-0">
@@ -11,12 +11,14 @@
           <%= nav_tab t('home.about'), home_about_path, class:"nav-link", current_page: current_page %>
         </li>
         <li class="nav-link">
-          <%= nav_tab "Contacts" , home_contact_path, class:"nav-link", current_page: current_page %> 
+          <%= nav_tab t('home.contact') , home_contact_path, class:"nav-link", current_page: current_page %> 
         </li>
       </ul>
       <ul class="nav justify-content-end">
         <% if user_signed_in? %>
-
+        <li class="nav-item">
+        <%= current_user.username %>
+        </li>
         <li class="nav-item">
           <% if current_user.avatar.present? %>
             <%= image_tag(current_user.avatar.variant(resize_to_fill: [50, 50]), class: "rounded-circle") %>
@@ -26,21 +28,21 @@
         </li>
 
         <li class="nav-link">
-          <%= link_to "Edit Profile" , edit_user_registration_path, class:"btn btn-light text-dark" %>
+          <%= link_to t('devise.buttons.edit') , edit_user_registration_path, class:"btn btn-light text-dark" %>
         </li>
 
         <li class="nav-link">
-          <%= link_to "Sign Out" , destroy_user_session_path, method: :delete, class:"btn btn-danger text-dark" %>
+          <%= link_to t('devise.buttons.sign_out') , destroy_user_session_path, method: :delete, class:"btn btn-danger text-dark" %>
         </li>
 
         <% else %>
 
         <li class="nav-link">
-          <%= link_to t('.sign_in') , new_user_session_path, class:"btn btn-light text-dark" %>
+          <%= link_to t('devise.buttons.sign_in') , new_user_session_path, class:"btn btn-light text-dark" %>
         </li>
 
         <li class="nav-link">
-          <%= link_to "Sign up" , new_user_registration_path, class:"btn btn-warning text-dark" %>
+          <%= link_to t('devise.buttons.sign_up') , new_user_registration_path, class:"btn btn-warning text-dark" %>
         </li>
         
         <% end %>
