@@ -1,0 +1,15 @@
+<%= form_for [@lot, @bid] do |f| %>
+ <div class="field form-group">
+  <% f.label :lot_id, "Lot" %>
+  <%= f.text_field :lot_id, value: @lot.id, class: 'form-control', type: 'hidden' %>
+  </div>
+  <div class="field form-group">
+  <% f.label :user_id %>
+  <%= f.number_field :user_id, value: current_user.id, class: 'form-control', type: 'hidden' %>
+  </div>
+  <div class="field form-group">
+  <%= f.label :amount, "Amount" %>
+  <%= f.number_field :amount, required: true, min: 25, step: 25 %>
+  </div>
+  <%= f.submit "Bid", class:"btn btn-info" %>
+<% end %>

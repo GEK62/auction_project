@@ -4,6 +4,8 @@ class LotsController < ApplicationController
 
   def index
     @lots = Lot.all
+    @bids = current_user.bids
+    @bid = Bid.all
   end
 
   def new
@@ -26,9 +28,10 @@ class LotsController < ApplicationController
 
   def show
     @lot = Lot.find(params[:id])
+    @lot.id = params[:id]
     @categories = Category.all
     @category_groups = CategoryGroup.all
-    @bid = Bid.find_by(lot_id: @lot.id)
+    @bid = @lot.bids.build
   end
 
   def edit

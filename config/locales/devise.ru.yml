@@ -44,6 +44,11 @@ ru:
       updated: "Ваша учётная запись успешно изменена."
       updated_but_not_signed_in: "Ваш аккаунт успешно изменен, но так как ваш пароль изменился, нужно войти снова."
     sessions:
+      sign_in: "Вход"
+      label: "Логин"
+      label_login: "Логин или почта"
+      label_password: "Пароль"
+      remember: "Запомнить меня"
       signed_in: "Вход в систему выполнен."
       signed_out: "Выход из системы выполнен."
       already_signed_out: "Выход из системы выполнен."
@@ -70,6 +75,8 @@ ru:
       sign_in_with: "Войти с %{provider}"
       sign_in_or_sign_up: "Войти или зарегистрироваться"
       sign_out: "Выйти"
+      confirmable: "Не получили письмо с подтверждением?"
+      unlockable: "Не получили письмо для разблокировки?"
   errors:
     messages:
       already_confirmed: "уже подтверждена. Пожалуйста, попробуйте войти в систему"

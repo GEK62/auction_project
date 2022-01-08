@@ -12,6 +12,7 @@ class User < ApplicationRecord
         :omniauthable, omniauth_providers: [:github, :google_oauth2, :linkedin]
   has_one_attached :avatar
   has_many :lots, dependent: :destroy
+  has_many :bids, dependent: :destroy
 
   attr_writer :login
 

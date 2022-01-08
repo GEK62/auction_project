@@ -1,40 +1,44 @@
 <% provide :page_title, 'Lots' %>
 <% currently_at 'Lots' %>
 <% if user_signed_in? %>
-<h1 class="text-center">Welcome to Auction</h1>
 
 <p id="notice"><%= notice %></p>
+<br/>
+<div class="row row-cols-1 row-cols-md-3 g-4">
+  <% @lots.each do |lot| %>
+  <div class="col">
+    <div class="card h-100">
+      <%= image_tag lot.images.first, class: 'card-img-top img-fluid img-thumbnail' %>
+      <div class="card-body">
+        <h2 class="card-title"><%= link_to lot.name, lot, class: 'text-dark' %></h2>
+        <h5 class="card-title"><%= lot.category_id %></h5>
+        <h5 class="card-title">Start price: <%= lot.start_price %>$</h5>
+        <h5 class="card-title">Max price: <%= lot.fast_buy_price %>$</h5>
+        <h5 class="card-title">End date: <%= lot.end_date.strftime("%d.%m.%Y") %></h5>
+      <div class="card-h-100"><p class="card-text">Lot description: <%= lot.description %></p>
+      </div> 
+      </div>
+      <% if lot.user_id == current_user.id %>
+      <div class="card-body">
+        <h5 class="card-title">Lot bids: <%= lot.bids.count %></h5>
+        <%= link_to 'Edit', edit_lot_path(lot), class: 'btn btn-primary' %>
+        <%= link_to 'Delete', lot, method: :delete, data: { confirm: 'Are you sure?' }, class: 'btn btn-danger' %>
+      </div>
+      <% else %>
+      <div class="card-body">
+      <h5 class="card-title">Lot bids: <%= lot.bids.count %></h5>
+        <%= link_to 'Bid', lot, class: 'btn btn-warning' %>
+      </div>
+      <% end %>
+      <div class="card-footer">
+        <small class="text-muted">Last update: <%= lot.updated_at %></small>
+      </div>
+    </div>
+  </div>
+<% end %>
+</div>
 
-<table class="table table-dark table-striped">
-  <thead>
-    <tr>
-    <th>Name</th>
-    <th>Description</th>
-    <th>Category</th>
-    <th>Price</th>
-    <th>Fast buy price</th>
-    <th>End date</th>
-    <th>Images</th>
-    <th>Lot owner</th>
-    </tr>
-  </thead>
-
-  <tbody>
-    <% @lots.each do |lot| %>
-        <td><%= link_to lot.name, lot %></td>
-        <td><%= lot.description %></td>
-        <td><%= lot.category_id %></td>
-        <td><%= lot.start_price %>$</td>
-        <td><%= lot.fast_buy_price %>$</td>
-        <td><%= lot.end_date.strftime("%d.%m.%Y") %></td>
-        <td><%= image_tag lot.images.first, width: "200px", height: "200px" %></td>
-        <td><%= lot.user_id %></td>
-      </tr>
-    <% end %>
-  </tbody>
-</table>
-
-<br>
+<br/>
 
 <%= link_to 'New Lot', new_lot_path, class:"btn btn-success" %>
 <% else %>

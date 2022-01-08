@@ -1,57 +1,37 @@
 class BidsController < ApplicationController
-  before_action :set_bid, only: %i[show edit update destroy]
-
-  def show
-    @bid = Bid.find(params[:id])
-  end
-
+  before_action :authenticate_user!, only: [:create, :index]
   def new
-    @lot = Lot.find(params[:id])
-    @bid = @lot.bids.build
-  end
-
-  def update
-    @bid = Bids.find(params[:id])
-    @lot = Lot.find(@bid.lot_id)
-
-    @old_user = User.find(@bid.user_id)
-    @old_user.budget += @item.price + @bid.amount
-
-    @new_user = User.find(params[:bid][:user_id])
-    @bid.user_id = @new_user.id
-    @bid.amount = params[:bid][:amount]
-    @new_user.budget -= @item.price + @bid.amount
-
-    respond_to do |format|
-      if @bid.save
-        format.html { redirect_to @lot, notice: 'Your item has been updated.' }
-      else
-        format.html { render action: 'new' }
-      end
-    end
   end
 
   def create
-    @lot = Lot.find(params[:id])
-    @bid = @lot.bids.new(bid_params)
-    respond_to do |format|
-      if @bid.save
-        format.html { redirect_to @lot, notice: 'Your lot has been updated.' }
-      else
-        format.html { render action: 'new' }
-      end
+    @categories = Category.all
+    @category_groups = CategoryGroup.all
+    @lot = Lot.find(params[:bid][:lot_id])
+    @bid = @lot.bids.build(bid_params)
+    @bid.user = current_user
+    if @bid.user.budget >= @bid.amount + @lot.start_price &&  @lot.fast_buy_price <= @bid.amount
+      @bid.save
+      redirect_to lot_path(@lot), notice: 'Bid was successfully created.'
+    elsif @bid.user.budget < @bid.amount + @lot.start_price
+      redirect_to lot_path(@lot), notice: 'You don\'t have enough money'
+    elsif @bid.amount < @lot.start_price
+      redirect_to lot_path(@lot), notice: 'Bid must be greater than start price'
+    elsif @bid.amount == @lot.fast_buy_price
+      @bid.update(lot_status: "sold")
+      redirect_to lot_path(@lot), notice: 'You win auction and lot was closed'
+    else
+      redirect_to lot_path(@lot), notice: 'Something went wrong'
     end
+  end
+
+  def index
+    @bids = current_user.bids
   end
 
   private
 
-  def set_bid
-    @bid = Bid.find(params[:id])
-  end
-
   def bid_params
-    params[:bid][:user_id] = current_user.id
-
-    params[:bid].permit(:amount, :user_id, :lot_id)
+    params.require(:bid).permit(:amount, :lot_id, :user_id)
   end
+
 end
