@@ -3,10 +3,12 @@ class LotsController < ApplicationController
   before_action :authenticate_user!, except: %i[index show]
 
   def index
+    @q = Lot.ransack(params[:q])
+    @lots = @q.result(distinct: true).order(created_at: :desc).page(params[:page]).per(12)
     @categories = Category.all
     @category_groups = CategoryGroup.all
-    @lots = Lot.order(created_at: :desc).page(params[:page]).per(12)
     @bid = Bid.all
+    @bids = Bid.all
 
     respond_to do |format|
       format.html
