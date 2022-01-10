@@ -1,24 +1,24 @@
 <%= provide :navbar do %>
 <header>
-<nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+<nav class="navbar navbar-expand-lg navbar-light bg-dark"> 
   <div class="container-fluid">
-    <a class="navbar-brand" href="/">
+    <a class="navbar-brand text-light" href="/">
       <%= t('navbar.brand') %>
     </a>
     <div class="collapse navbar-collapse" id="navbarSupportedContent">
       <ul class="navbar-nav me-auto mb-2 mb-lg-0">
         <li class="nav-link">
-          <%= nav_tab t('home.about'), home_about_path, class:"nav-link", current_page: current_page %>
+          <%= nav_tab t('home.about'), home_about_path, class:"nav-link text-light", current_page: current_page %>
         </li>
         <li class="nav-link">
-          <%= nav_tab t('home.contact') , home_contact_path, class:"nav-link", current_page: current_page %> 
+          <%= nav_tab t('home.contact') , home_contact_path, class:"nav-link text-light", current_page: current_page %> 
+        </li>
+        <li class="nav-link">
+          <%= nav_tab t('devise.buttons.new'), new_lot_path, class:"btn btn-success" %>
         </li>
       </ul>
       <ul class="nav justify-content-end">
         <% if user_signed_in? %>
-        <li class="nav-item">
-        <%= current_user.username %>
-        </li>
         <li class="nav-item">
           <% if current_user.avatar.present? %>
             <%= image_tag(current_user.avatar.variant(resize_to_fill: [50, 50]), class: "rounded-circle") %>
@@ -26,7 +26,9 @@
             <%= image_tag("default.png", class: "rounded-circle") %>
           <% end %>
         </li>
-
+        <li class="nav-item">
+            <h4 class="nav-link disabled text-" ><%= current_user.budget %>$</h4> 
+        </li>
         <li class="nav-link">
           <%= link_to t('devise.buttons.edit') , edit_user_registration_path, class:"btn btn-light text-dark" %>
         </li>

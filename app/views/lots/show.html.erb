@@ -2,49 +2,47 @@
 <% currently_at 'Lot description' %>
 <p id="notice"><%= notice %></p>
 
-<p>
-  <strong>Name:</strong>
-  <%= @lot.name %>
-</p>
-
-<p>
-  <strong>Description:</strong>
-  <%= @lot.description %>
-</p>
-
-<p>
-  <strong>End Date:</strong>
-  <%= @lot.end_date.strftime("%B %d, %Y") %>
-</p>
-
-<p>
-  <strong>Start price:</strong>
-  <%= @lot.start_price %>$
-</p>
-
-<p>
-  <strong>Fast buy price:</strong>
-  <%= @lot.fast_buy_price %>$
-</p>
-
-<p>
-  <strong>Category:</strong>
-  <%= @categories.find_by_id(@lot.category_id).title %>
-</p>
-
-<p>
-  <strong>Images:</strong>
-  <% if @lot.images.attached? %>
-    <% @lot.images.each do |image| %>
-      <%= image_tag image, class: 'lot-image', height: '200', width: '200' %>
+<div class="container py-4 my-4 mx-auto d-flex flex-column card bg-dark">
+    <div class="header">
+        <div class="row r1">
+            <div class="col-md-9 abc">
+                <h1 class="text-warning"><%= @lot.name %></h1>
+            </div>
+            <div class="col-md-3 text-right pqr"><i class="fa fa-star"></i><i class="fa fa-star"></i><i class="fa fa-star"></i><i class="fa fa-star"></i><i class="fa fa-star"></i></div>
+            <p class="text-right para text-success">Active lot</p>
+        </div>
+    </div>
+    <div class="container-body mt-4">
+        <div class="row r3">
+            <div class="col-md-5 p-0 klo">
+                <ul>
+                    <li class="text-primary"><h3>Category: <%= @categories.find_by_id(@lot.category_id).title %></h3></li>
+                    <li class="text-success"><h3>Start price: <%= @lot.start_price %>$</li></h3>
+                    <li class="text-success"><h3>Final price: <%= @lot.fast_buy_price %>$</li></h3>
+                    <li class="text-danger"><h3>End date: <%= @lot.end_date.strftime("%B %d, %Y") %></li></h3>
+                    <li class="text-light"><h5><%= @lot.description %></li></h5>
+                </ul>
+            </div>
+            <div class="col-md-7"> <% if @lot.images.attached? %>
+                <% @lot.images.each do |image| %>
+                <%= image_tag image, class: 'lot-image img-thumbnail float-end img-fluid', height: '400', width: '400' %>
+            <% end %>
+              <% else %>
+            <h4>No images</h4>
+             <% end %></div>
+        </div>
+    </div>
+    <div class="footer d-flex flex-column mt-5">
+    </div>
+    
+    <% if current_user.id == @lot.user_id %>
+      <% if policy(@lot).edit? %>
+        <%= link_to 'Edit', edit_lot_path(@lot), class: 'btn btn-warning' %>
+      <% end %>
+    <% else %>
+     <%= render 'bids/form', lot: @lot %>
     <% end %>
-  <% else %>
-    <h4>No images</h4>
-  <% end %>
-</p>
+</div>
 
 
-<% if policy(@lot).edit? %>
-<%= link_to 'Edit', edit_lot_path(@lot), class: 'btn btn-warning' %>
-<% end %>
 <%= link_to 'Back', lots_path, class: 'btn btn-dark' %>

@@ -1,41 +1,37 @@
 <% provide :page_title, 'Log in' %>
 <% currently_at 'Log in' %>
 
-<div class="card">
+<div class="card text-white bg-dark mb-3">
   <div class="card-header">
-    <h4><%= t('.sign_in') %></h4>
+    <h4><%= t('devise.sessions.sign_in') %></h4>
   </div>
   <div class="card-body">
      <%= form_for(resource, as: resource_name, url: new_session_path(resource_name)) do |f| %>
      <%= render "devise/shared/error_messages", resource: resource %>
   <div class="field form-group">
-    <%= f.label :login %><br />
-    <%= f.text_field :login, class:"form-control", autofocus: true, placeholder:"Username or mail"%>
+    <%= f.label t('devise.sessions.label') %><br />
+    <%= f.text_field :login, class:"form-control", autofocus: true, placeholder:t('devise.sessions.label_login') %>
   </div>
 
   <div class="field form-group">
-    <%= f.label :password %><br />
-    <%= f.password_field :password, class:"form-control", placeholder:"Password", autocomplete: "current-password" %>
+    <%= f.label t('devise.sessions.label_password') %><br />
+    <%= f.password_field :password, class:"form-control", placeholder:t('devise.sessions.label_password'), autocomplete: "current-password" %>
   </div>
 
   <% if devise_mapping.rememberable? %>
     <div class="field form-check">
       <%= f.check_box :remember_me, class:"form-check-input" %>
-      <%= f.label :remember_me, class:"form-check-label" %>
+      <%= f.label t('devise.sessions.remember'), class:"form-check-label" %>
     </div>
   <% end %>
-
+<br/>
   <div class="actions">
-    <%= f.submit "Log in", class:"btn btn-secondary" %>
+    <%= f.submit t('devise.buttons.sign_in'), class:"btn btn-secondary" %>
   </div>
 <% end %>
   </div>
-</div>
-
-
-
-
 
 
 <br/>
 <%= render "devise/shared/links" %>
+</div>

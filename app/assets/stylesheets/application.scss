@@ -1,10 +1,79 @@
 @import 'bootstrap';
 
-.field_with_errors {
-  .form-control {
-    border-color: $red;
-  }
-  label {
-    color: $red;
-  }
-} 
+body {
+	background: linear-gradient(-45deg, #ee7752, #e73c7e, #23a6d5, #23d5ab);
+	background-size: 400% 400%;
+	animation: gradient 15s ease infinite;
+	height: 100vh;
+}
+
+@keyframes gradient {
+	0% {
+		background-position: 0% 50%;
+	}
+	50% {
+		background-position: 100% 50%;
+	}
+	100% {
+		background-position: 0% 50%;
+	}
+}
+
+#notice {
+	border: 1px solid rgba(6, 134, 126, 0.81);
+  background-color: rgba(1, 204, 220, 0.16);
+  box-shadow: 0px 0px 2px #03fff5;
+  color: #ff3e03;
+  text-shadow: 2px 1px #00040a;
+  transition:0.5s;
+  cursor:pointer;
+}
+
+.card-notify-badge {
+	position: absolute;
+	left: -10px;
+	top: -20px;
+	background: #f2d900;
+	text-align: center;
+	border-radius: 30px 30px 30px 30px; 
+	color: #000;
+	padding: 5px 10px;
+	font-size: 14px;
+
+}
+
+.card-button {
+	display: flex;
+	justify-content: center;
+	padding: 10px 0;
+	width: 100%;
+	background-color: #1F487E;
+	color: #fff;
+	border-radius: 0 0 8px 8px;
+}
+
+.product_price {
+	font-size: 20px;
+	font-weight: bold;
+	color: rgb(21, 184, 7);
+}
+
+.abc {
+	padding-left: 40px
+}
+
+.pqr {
+	padding-right: 70px;
+	padding-top: 14px
+}
+
+.para {
+	float: right;
+	margin-right: 0;
+	padding-left: 80%;
+	top: 0
+}
+
+.fa-star {
+	color: yellow
+}

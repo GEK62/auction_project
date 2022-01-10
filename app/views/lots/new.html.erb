@@ -1,11 +1,7 @@
 <% provide :page_title, 'New lot' %>
 <% currently_at 'New lot' %>
-<h1>New Lot</h1>
 <p id="notice"><%= notice %></p>
 <%= render 'form', lot: @lot %>
 <br/>
-<div class="row">
-  <div class="col-md-12">
-    <%= link_to 'Back', lots_path, class: 'btn btn-primary' %>
-  </div>
+  <%= link_to 'Back', lots_path, class: 'btn btn-primary' %>
 </div>
