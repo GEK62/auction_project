@@ -18,7 +18,7 @@ gem 'turbolinks', '~> 5'
 # Build JSON APIs with ease. Read more: https://github.com/rails/jbuilder
 gem 'jbuilder', '~> 2.7'
 # Use Redis adapter to run Action Cable in production
-gem 'redis', '~> 4.0'
+gem 'redis', '~> 4.5', '>= 4.5.1'
 # Use Active Model has_secure_password
 gem 'bcrypt', '~> 3.1.7'
 # Use Devise for authentication
@@ -53,6 +53,14 @@ gem 'bullet', '~> 6.1', '>= 6.1.4'
 gem 'aasm', '~> 5.2'
 # Use after_commit_everywhere gem for after_commit
 gem 'after_commit_everywhere', '~> 1.1'
+# Use sidekiq gem for background jobs
+gem 'sidekiq', '~> 6.3', '>= 6.3.1'
+# Use sidekiq-cron gem for background jobs
+gem 'sidekiq-cron', '~> 1.2'
+# Use ransack gem for search
+gem 'ransack', '~> 2.5'
+# Use date_validator gem for validating dates
+gem 'date_validator', '~> 0.12.0'
 
 # Use Active Storage variant
 gem 'image_processing', '~> 1.2'

@@ -4,18 +4,19 @@
 
 <p id="notice"><%= notice %></p>
 <br/>
+
 <div class="row row-cols-1 row-cols-md-3 g-4">
   <% @lots.each do |lot| %>
   <div class="col">
-    <div class="card h-100">
+    <div class="card text-white bg-dark mb-3">
       <%= image_tag lot.images.first, class: 'card-img-top img-fluid img-thumbnail' %>
+      <span class="card-notify-badge"><%= @categories[lot.category_id].title %></span>
       <div class="card-body">
-        <h2 class="card-title"><%= link_to lot.name, lot, class: 'text-dark' %></h2>
-        <h5 class="card-title"><%= lot.category_id %></h5>
-        <h5 class="card-title">Start price: <%= lot.start_price %>$</h5>
-        <h5 class="card-title">Max price: <%= lot.fast_buy_price %>$</h5>
-        <h5 class="card-title">End date: <%= lot.end_date.strftime("%d.%m.%Y") %></h5>
-      <div class="card-h-100"><p class="card-text">Lot description: <%= lot.description %></p>
+        <h2 class="card-title text-center"><%= link_to lot.name, lot, class: 'text-warning' %></h2>
+        <h5 class="product_price text-center">Start price: <%= lot.start_price %>$</h5>
+        <h5 class="product_price text-center">Max price: <%= lot.fast_buy_price %>$</h5>
+        <h5 class="card-title text-danger text-center">End date: <%= lot.end_date.strftime("%d.%m.%Y") %></h5>
+      <div class="card-h-75"><p class="card-text text-center">Lot description: <%= lot.description %></p>
       </div> 
       </div>
       <% if lot.user_id == current_user.id %>
@@ -26,8 +27,9 @@
       </div>
       <% else %>
       <div class="card-body">
+
       <h5 class="card-title">Lot bids: <%= lot.bids.count %></h5>
-        <%= link_to 'Bid', lot, class: 'btn btn-warning' %>
+        <%= link_to 'Bid', lot, class: 'card-button btn' %>
       </div>
       <% end %>
       <div class="card-footer">
@@ -40,9 +42,13 @@
 
 <br/>
 
+
+<%= link_to 'csv', lots_path(format: :csv), class: 'btn btn-danger' %>
 <%= link_to 'New Lot', new_lot_path, class:"btn btn-success" %>
+<%= paginate @lots %>
 <% else %>
-<h1 class="text-center">Welcome to Auction</h1>
+
+<h1 class="text-center">Welcome to Auction!</h1>
 <br/>
-<h2 class="text-center">Please, <%= link_to 'sign in', new_user_session_path, class:"btn btn-secondary"%> or <%= link_to 'sign up', new_user_registration_path, class:"btn btn-warning" %> to continue</h2>
+<h3 class="text-center">Please, sign in or register to start bidding!</h3>
 <% end %>

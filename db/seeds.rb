@@ -177,15 +177,15 @@ Category.create(title:'Goods for pets', category_group_id: 16)
 Category.create(title:'Ready business', category_group_id: 17)
 Category.create(title:'Business equipment', category_group_id: 17)
 
-#  100.times do
-#   l = Lot.new(
-#      name: Faker::Commerce.product_name,
-#      description: Faker::Lorem.paragraph(sentence_count: 10),
-#      start_price: Faker::Commerce.price(range: 1..100),
-#      fast_buy_price: Faker::Commerce.price(range: 150..10000),
-#      end_date: Faker::Date.forward(days: 30),
-#      user_id: rand(1..10),
-#      category_id: rand(1..266)
-#    )
-#    l.images.attach(io: File.open("#{Rails.root}/app/assets/images/lot.png"), filename: "lot.png")
-#  end
+ 100.times do
+  l = Lot.create!(
+     name: Faker::Commerce.product_name,
+     description: Faker::Lorem.paragraph(sentence_count: 10),
+     start_price: Faker::Commerce.price(range: 1..100),
+     fast_buy_price: Faker::Commerce.price(range: 150..10000),
+     end_date: Faker::Date.forward(days: 30),
+     user_id: rand(1..2),
+     category_id: rand(1..148),
+   )
+   l.images.attach(io: File.open("#{Rails.root}/app/assets/images/lot.png"), filename: "lot.png")
+ end

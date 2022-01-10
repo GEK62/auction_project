@@ -1,6 +1,6 @@
 <% provide :page_title, 'Sign up' %>
 <% currently_at 'Sign up' %>
-<div class="card">
+<div class="card text-white bg-dark mb-3">
   <div class="card-header">
     <h4>Sign up</h4>
   </div>
@@ -9,13 +9,13 @@
   <%= render "devise/shared/error_messages", resource: resource %>
 
   <div class="field form-group">
-    <%= f.label :username %>
-    <%= f.text_field :username, class: "form-control" %>
+    <% f.label :username %>
+    <%= f.text_field :username, class: "form-control", autofocus: true, required: true, placeholder:"Username" %>
   </div>
 
   <div class="field form-group">
     <% f.label :email %><br />
-    <%= f.email_field :email, autofocus: true, autocomplete: "email", class:"form-control", placeholder:"Email" %>
+    <%= f.email_field :email, autocomplete: "email", class:"form-control", placeholder:"Email" %>
   </div>
 
   <div class="field form-group">
@@ -30,14 +30,15 @@
     <% f.label :password_confirmation %><br />
     <%= f.password_field :password_confirmation, autocomplete: "new-password", class:"form-control", placeholder:"Password Confirmation" %>
   </div>
-
+<br/>
   <div class="actions">
-    <%= f.submit "Sign up", class:"btn btn-secondary" %>
+    <%= f.submit "Sign up", class:"btn btn-warning" %>
   </div>
 <% end %>
   </div>
-</div>
+
 
 
 <br/>
 <%= render "devise/shared/links" %>
+</div>

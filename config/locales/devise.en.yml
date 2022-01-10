@@ -78,6 +78,7 @@ en:
       confirmable: "Didn't receive confirmation instructions?"
       unlockable: "Didn't receive unlock instructions?"
       social: "Sign in with: "
+      new: "New lot"
   errors:
     messages:
       already_confirmed: "was already confirmed, please try signing in"

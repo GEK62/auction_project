@@ -1,2 +1,4 @@
-module Users::OmniauthHelper
+module Users
+  module OmniauthHelper
+  end
 end

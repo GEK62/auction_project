@@ -11,6 +11,11 @@
     </div>
   <% end %>
 
+<div class="card text-white bg-dark mb-3">
+  <div class="card-header">
+  <h4 class="text-center">New lot</h4>
+  </div>
+  <div class="card-body">
   <div class="field form-group">
     <%= f.label :name %>
     <%= f.text_field :name, required: true, minlength: 3, maxlength: 50, class:"form-control" %>
@@ -52,5 +57,5 @@
   <div class="field form-group">
     <%= f.submit "Create", class:"btn btn-warning" %>
   </div>
-
+</div>
 <% end %>

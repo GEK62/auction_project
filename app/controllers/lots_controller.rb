@@ -3,9 +3,15 @@ class LotsController < ApplicationController
   before_action :authenticate_user!, except: %i[index show]
 
   def index
-    @lots = Lot.all
-    @bids = current_user.bids
+    @categories = Category.all
+    @category_groups = CategoryGroup.all
+    @lots = Lot.order(created_at: :desc).page(params[:page]).per(12)
     @bid = Bid.all
+
+    respond_to do |format|
+      format.html
+      format.csv { send_data @lots.to_csv, filename: "lots-#{Time.zone.now.to_s(:number)}.csv" }
+    end
   end
 
   def new
@@ -39,6 +45,7 @@ class LotsController < ApplicationController
     authorize @lot
     @categories = Category.all
     @category_groups = CategoryGroup.all
+    @bid = @lot.bids.destroy_all
   end
 
   def update

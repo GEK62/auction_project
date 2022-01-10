@@ -1,4 +1,4 @@
-<div class="card">
+<div class="card text-white bg-dark mb-3">
   <div class="card-header">
     <h4>Forgot your password?</h4>
   </div>
@@ -7,7 +7,7 @@
   <%= render "devise/shared/error_messages", resource: resource %>
 
   <div class="field form-group">
-    <% f.label :email %><br />
+    <%= f.label :email %><br />
     <%= f.email_field :email, autofocus: true, autocomplete: "email", class:"form-control", placeholder:"Email" %>
   </div>
 <br>
@@ -16,6 +16,7 @@
   </div>
 <% end %>
   </div>
-</div>
+
 <br>
 <%= render "devise/shared/links" %>
+</div>

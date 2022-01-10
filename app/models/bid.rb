@@ -6,4 +6,6 @@ class Bid < ApplicationRecord
   def last_price
     lot.bids.last.try(:amount) || lot.start_price
   end
+
+  delegate :budget, to: :user, prefix: true
 end

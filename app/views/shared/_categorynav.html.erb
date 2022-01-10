@@ -7,7 +7,7 @@
             </button>
                 <ul class="dropdown-menu">
                     <% group.categories.each do |category| %>
-                <li><a class="dropdown-item" href="#"><%= category.title %></a></li>
+                <li><a class="dropdown-item" href="/categories/<%= category.id %>"><%= category.title %></a></li>
                     <% end %>
                 </ul>
             </div>
