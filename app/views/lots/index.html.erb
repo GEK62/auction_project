@@ -3,8 +3,8 @@
 <% if user_signed_in? %>
 
 <p id="notice"><%= notice %></p>
+<%= render 'search_form' %>
 <br/>
-
 <div class="row row-cols-1 row-cols-md-3 g-4">
   <% @lots.each do |lot| %>
   <div class="col">

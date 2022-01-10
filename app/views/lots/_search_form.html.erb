@@ -1,0 +1,11 @@
+<div class="input-group d-inline">
+  <div class="form-outline d-inline">
+    <%= search_form_for @q do |f| %>
+     <%f.label :name, class:"form-label" %>
+     <%= f.search_field :name, class:"form-control", placeholder:t('lots.search') %>
+     <%= f.submit t('lots.searchb'), class:"btn btn-primary"%>
+</div>
+  
+<% end %>
+</div>
+<br/>

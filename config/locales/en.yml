@@ -3,6 +3,9 @@ en:
   ru: 'Russian'
   navbar:
     brand: 'Auction'
+  lots:
+    search: 'Search by name'
+    searchb: 'Search'
   home:
     about: 'About'
     contact: 'Contact'
